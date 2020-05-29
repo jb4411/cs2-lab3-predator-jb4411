@@ -6,7 +6,7 @@ import rit.cs.Stack;
  * A stack implementation that uses a Node to represent the structure.
  * @param <T> The type of data the stack will hold
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class StackNode<T> implements Stack<T> {
 
