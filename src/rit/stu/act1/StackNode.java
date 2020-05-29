@@ -23,6 +23,11 @@ public class StackNode<T> implements Stack<T> {
         return this.stackTop == null;
     }
 
+    /**
+     * @rit.pre: stack must not be empty
+     * @throws AssertionError if stack empty
+     * @return oldTop
+     */
     @Override
     public T pop() {
         assert ! this.empty();
@@ -36,6 +41,11 @@ public class StackNode<T> implements Stack<T> {
         this.stackTop = new Node<T>(element, this.stackTop);
     }
 
+    /**
+     * @rit.pre: stack must not be empty
+     * @throws AssertionError if stack empty
+     * @return stackTop
+     */
     @Override
     public T top() {
         assert ! this.empty();
