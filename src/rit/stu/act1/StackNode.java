@@ -18,15 +18,22 @@ public class StackNode<T> implements Stack<T> {
         this.stackTop = null;
     }
 
+    /**
+     * Check if the stack is currently empty or not.
+     *
+     * @return true if empty, false otherwise
+     */
     @Override
     public boolean empty() {
         return this.stackTop == null;
     }
 
     /**
+     * Remove and return the top element in the stack.
+     *
      * @rit.pre: stack must not be empty
      * @throws AssertionError if stack empty
-     * @return oldTop
+     * @return the front element
      */
     @Override
     public T pop() {
@@ -36,15 +43,22 @@ public class StackNode<T> implements Stack<T> {
         return oldTop;
     }
 
+    /**
+     * Add a new element to the top of the stack.
+     *
+     * @param element The new data element
+     */
     @Override
     public void push(T element) {
         this.stackTop = new Node<T>(element, this.stackTop);
     }
 
     /**
+     * Get the top element on the stack.
+     *
      * @rit.pre: stack must not be empty
      * @throws AssertionError if stack empty
-     * @return stackTop
+     * @return The top element
      */
     @Override
     public T top() {
