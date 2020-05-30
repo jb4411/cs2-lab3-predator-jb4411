@@ -37,7 +37,7 @@ public class StackNode<T> implements Stack<T> {
      */
     @Override
     public T pop() {
-        assert ! this.empty();
+        assert !empty();
         T oldTop = this.stackTop.getData();
         this.stackTop = this.stackTop.getNext();
         return oldTop;
@@ -62,7 +62,7 @@ public class StackNode<T> implements Stack<T> {
      */
     @Override
     public T top() {
-        assert ! this.empty();
+        assert !empty();
         return this.stackTop.getData();
     }
 }
