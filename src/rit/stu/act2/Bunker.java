@@ -50,8 +50,8 @@ public class Bunker {
      * Remove the next soldier from the front of the bunker to be deployed on a
      * rescue attempt.
      *
-     * @return the soldier at the front of the bunker
      * @rit.pre the bunker is not empty
+     * @return the soldier at the front of the bunker
      */
     public Soldier deployNextSoldier() {
         this.numSoldiers -= 1;
