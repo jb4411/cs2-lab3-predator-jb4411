@@ -8,7 +8,7 @@ import java.util.Random;
  * $ java Battlefield #_hostages #_soldiers #_guerillas
  *
  * @author RIT CS
- * @author YOUR NAME HERE
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
  */
 public class Battlefield {
     /** the single instance of the random number generator */
@@ -17,9 +17,14 @@ public class Battlefield {
     /** the seed the random number generator will use */
     private final static int SEED = 0;
 
-
-    // TODO: ADD THE REMAINING STATE HERE
-
+    /** da choppa! */
+    private Chopper chopper;
+    /** the enemy base containing hostages and guerillas */
+    private EnemyBase enemyBase;
+    /** the bunker of soldiers */
+    private Bunker bunker;
+    /** The predator! */
+    private Predator predator;
 
     /**
      * Generate a random integer between min and max inclusive.  For example: <br>
@@ -46,8 +51,10 @@ public class Battlefield {
      */
     public Battlefield(int numHostages, int numSoldiers, int numGuerillas) {
         this.rng.setSeed(SEED);
-
-        //TODO: Initialize the other classes here
+        this.chopper = new Chopper();
+        this.enemyBase = new EnemyBase(numHostages, numGuerillas);
+        this.bunker = new Bunker(numSoldiers);
+        this.predator = new Predator();
 
     }
 
@@ -59,9 +66,7 @@ public class Battlefield {
      * Statistics: # hostages remain, # soldiers remain, # guerillas remain, # rescued<br>
      */
     private void printStatistics() {
-
-        // TODO
-
+        System.out.println("Statistics: " + Integer.toString(this.enemyBase.getNumHostages()) + " hostage/s remain, " + Integer.toString(this.bunker.getNumSoldiers()) + " soldier/s remain, " + Integer.toString(this.enemyBase.getNumGuerillas()) + " guerilla/s remain, " + Integer.toString(this.chopper.getNumRescued()) + " rescued");
     }
 
     /**
@@ -117,9 +122,60 @@ public class Battlefield {
      * 16. Print the statistics one last time.<br>
      */
     private void battle() {
+        //step 1
+        System.out.println("Get to the choppa!");
+        //step 2
+        while (bunker.hasSoldiers() && enemyBase.getNumHostages() > 0) {
+            //step 3
+            printStatistics();
+            //step 4
+            Soldier soldier = this.bunker.deployNextSoldier();
+            Hostage hostage = this.enemyBase.rescueHostage​(soldier);
+            //step 5
+            if (hostage != null) {
+                //step 6
+                //step 7
+                System.out.println(hostage.toString() + " rescued from enemy base by soldier " + soldier.toString());
+                //step 8
+                int roll = Battlefield.nextInt(1, 100);
+                System.out.println(soldier.toString() + " encounters the predator who rolls a " + Integer.toString(roll));
+                //step 9
+                if (roll > Predator.CHANCE_TO_BEAT_SOLDIER) {
+                    soldier.victory(predator);
+                    this.predator.defeat(soldier);
+                    this.chopper.boardPassenger​(hostage);
+                    this.bunker.fortifySoldiers​(soldier);
+                } else {
+                    //step 10
+                    this.predator.victory(soldier);
+                    soldier.defeat(predator);
+                    //step 11
+                    int newRoll = Battlefield.nextInt(1, 100);
+                    System.out.println(hostage.toString() + " encounter the predator who rolls a " + Integer.toString(newRoll));
+                    //step 12
+                    if (roll <= Predator.CHANCE_TO_BEAT_HOSTAGE) {
+                        this.predator.victory(hostage);
+                        hostage.defeat(predator);
+                    } else {
+                        //step 13
+                        hostage.victory(predator);
+                        this.predator.defeat(hostage);
+                        chopper.boardPassenger​(hostage);
+                    }
 
-        //TODO
-
+                }
+            }
+        }
+        //step 14
+        while (this.bunker.hasSoldiers()) {
+            this.chopper.boardPassenger​(bunker.deployNextSoldier());
+        }
+        //step 15
+        if (!chopper.isEmpty()) {
+            this.chopper.rescuePassengers();
+        }
+        //step 16
+        printStatistics();
     }
 
     /**

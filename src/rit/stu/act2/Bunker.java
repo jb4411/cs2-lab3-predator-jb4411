@@ -34,7 +34,7 @@ public class Bunker {
      * @return whether the bunker has soldiers or not
      */
     public boolean hasSoldiers() {
-        return this.bunker.empty();
+        return !this.bunker.empty();
     }
 
     /**
