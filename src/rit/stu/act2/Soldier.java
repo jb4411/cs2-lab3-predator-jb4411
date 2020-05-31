@@ -1,5 +1,10 @@
 package rit.stu.act2;
 
+/**
+ * A class to represent a soldier, each whom has a unique ID.
+ *
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
+ */
 public class Soldier implements Player {
     /** the id of this soldier */
     private int id;
@@ -46,6 +51,6 @@ public class Soldier implements Player {
      */
     @Override
     public String toString() {
-        return "Soldier #" + Integer.toString(id);
+        return "Soldier #" + Integer.toString(this.id);
     }
 }

@@ -1,5 +1,10 @@
 package rit.stu.act2;
 
+/**
+ * A class to represent a guerilla, each whom has a unique ID.
+ *
+ * @author Jesse Burdick-Pless jb4411@g.rit.edu
+ */
 public class Guerilla implements Player {
     /** The chance the guerilla has to defeat a soldier. If a die roll of 1-100
      *  is less than or equal to this, the guerilla defeats the soldier,
@@ -48,6 +53,6 @@ public class Guerilla implements Player {
      */
     @Override
     public String toString() {
-        return "Guerilla #" + Integer.toString(id);
+        return "Guerilla #" + Integer.toString(this.id);
     }
 }
