@@ -11,6 +11,7 @@ public class Hostage implements Player {
 
     /**
      * Create a new hostage.
+     *
      * @param id the id of the hostage
      */
     public Hostage(int id) {
