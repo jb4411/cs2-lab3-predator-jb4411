@@ -50,7 +50,7 @@ public class Battlefield {
      * @param numGuerillas number of guerillas in the enemy base at start
      */
     public Battlefield(int numHostages, int numSoldiers, int numGuerillas) {
-        this.rng.setSeed(SEED);
+        rng.setSeed(SEED);
         this.chopper = new Chopper();
         this.enemyBase = new EnemyBase(numHostages, numGuerillas);
         this.bunker = new Bunker(numSoldiers);
@@ -153,7 +153,7 @@ public class Battlefield {
                     int newRoll = Battlefield.nextInt(1, 100);
                     System.out.println(hostage.toString() + " encounter the predator who rolls a " + Integer.toString(newRoll));
                     //step 12
-                    if (roll <= Predator.CHANCE_TO_BEAT_HOSTAGE) {
+                    if (newRoll <= Predator.CHANCE_TO_BEAT_HOSTAGE) {
                         this.predator.victory(hostage);
                         hostage.defeat(predator);
                     } else {

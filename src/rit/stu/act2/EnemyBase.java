@@ -139,16 +139,16 @@ public class EnemyBase {
         //step 1
         System.out.println(soldier.toString() + " enters enemy base...");
         //step 2
-        Hostage hostage = this.hostages.pop();
+        Hostage hostage = getHostage();
         //step 3
-        if (this.numHostages == 0) {
+        if (this.numGuerillas == 0) {
             return hostage;
         } else {
             //step 4
-            Guerilla guerilla = guerillas.dequeue();
+            Guerilla guerilla = getGuerilla();
             //step 5
             int roll = Battlefield.nextInt(1, 100);
-            System.out.println(soldier.toString() + " battles " + guerilla.toString() + "who rolls a " + Integer.toString(roll) + ".");
+            System.out.println(soldier.toString() + " battles " + guerilla.toString() + " who rolls a " + Integer.toString(roll) + ".");
             //step 6
             if (roll > Guerilla.CHANCE_TO_BEAT_SOLDIER) {
                 soldier.victory(guerilla);

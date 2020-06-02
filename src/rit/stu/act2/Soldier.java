@@ -26,7 +26,7 @@ public class Soldier implements Player {
      */
     @Override
     public void defeat(Player player) {
-        System.out.println(toString() + " yells, 'Sieg über " + player.toString() + "!'");
+        System.out.println(toString() + " cries, 'Besiegt von " + player.toString() + "!'");
     }
 
     /**
